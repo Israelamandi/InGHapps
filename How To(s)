@@ -1,0 +1,32 @@
+Certainly! Here's a line-by-line explanation of the code for implementing a Splash screen in Android using Java in IntelliJ IDEA:
+
+```
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_splash);
+}
+```
+
+- The `@Override` annotation indicates that we are overriding the `onCreate()` method from the superclass (in this case, `Activity`).
+- `protected void onCreate(Bundle savedInstanceState)` is the method signature for the `onCreate()` method. This method is called when the activity is created.
+- `super.onCreate(savedInstanceState)` calls the `onCreate()` method of the superclass, which is necessary for initializing the activity properly.
+- `setContentView(R.layout.activity_splash)` sets the activity's layout to the `activity_splash.xml` layout file in the `res/layout` directory. This means that when the activity is created, the contents of this layout file will be displayed on the screen.
+
+```
+new Handler().postDelayed(new Runnable() {
+    @Override
+    public void run() {
+        Intent intent = new Intent(MainActivity.this, NextActivity.class);
+        startActivity(intent);
+        finish();
+    }
+}, 3000); // 3000 milliseconds = 3 seconds
+```
+
+- `new Handler()` creates a new `Handler` object, which allows us to post `Runnable` objects to run on the main thread.
+- `.postDelayed(new Runnable() {...}, 3000)` posts a `Runnable` object to run after a specified delay (in this case, 3 seconds or 3000 milliseconds). The `Runnable` object contains the code to start the next activity and finish the current activity.
+- `new Runnable() {...}` creates a new `Runnable` object with an anonymous inner class. The `run()` method of the `Runnable` object contains the code to start the next activity and finish the current activity.
+- `Intent intent = new Intent(MainActivity.this, NextActivity.class);` creates a new `Intent` object to start the next activity (in this case, `NextActivity.class`). The `MainActivity.this` argument specifies the current activity as the context for the intent.
+- `startActivity(intent)` starts the next activity specified by the intent.
+- `finish()` finishes the current activity, which removes it from the activity stack and frees up resources.
